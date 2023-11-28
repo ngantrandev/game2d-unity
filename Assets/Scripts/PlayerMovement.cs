@@ -6,12 +6,14 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private BoxCollider2D boxCollider;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
+    private float dirX;
 
+    [SerializeField] private LayerMask jumpableLayer;
     [SerializeField] private float jumpForce = 14f; // Giup bien private co the hien thi tren Unity Editor giong bien public nhung dam bao encapsulation
     [SerializeField] private float moveSpeed = 7f;
-    private float dirX;
 
     private enum MovementState { idle, running, jumping, falling }
 
@@ -21,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        boxCollider = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -33,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
 
         rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && IsOnGround())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
 
@@ -69,5 +72,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         animator.SetInteger("player_state", (int)state);
+    }
+
+    private bool IsOnGround()
+    {
+        return Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0f, Vector2.down, .1f, jumpableLayer);
     }
 }
