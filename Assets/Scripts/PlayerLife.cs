@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerLife : MonoBehaviour
 {
+    [SerializeField] private AudioSource deadthSoundEffect;
     private Animator animation;
     private Rigidbody2D rb;
 
@@ -21,6 +22,7 @@ public class PlayerLife : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Trap"))
         {
+            deadthSoundEffect.Play();
             ShowDeathAnimation();
         }
     }
