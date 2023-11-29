@@ -34,6 +34,11 @@ public class PlayerMovement : MonoBehaviour
         UpdateAnimation();
 
 
+        if(rb.bodyType == RigidbodyType2D.Static)
+        {
+            return;
+        }
+
         rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
 
         if (Input.GetButtonDown("Jump") && IsOnGround())
