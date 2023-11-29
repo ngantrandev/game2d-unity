@@ -9,7 +9,8 @@ public class PlayerMovement : MonoBehaviour
     private BoxCollider2D boxCollider;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
-    private float dirX;
+    private float dirX = 0f;
+    private bool isPressedJump;
 
     [SerializeField] private LayerMask jumpableLayer;
     [SerializeField] private float jumpForce = 14f; // Giup bien private co the hien thi tren Unity Editor giong bien public nhung dam bao encapsulation
@@ -30,25 +31,35 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        dirX = Input.GetAxisRaw("Horizontal");
-
-        UpdateAnimation();
-
-
-        if(rb.bodyType == RigidbodyType2D.Static)
+        if (rb.bodyType == RigidbodyType2D.Static)
         {
             return;
         }
 
+        DetectActivity();
+
+        MovePlayer();
+
+        UpdateAnimation();
+
+    }
+
+    private void DetectActivity()
+    {
+        dirX = Input.GetAxisRaw("Horizontal");
+        isPressedJump = Input.GetButtonDown("Jump");
+    }
+
+    private void MovePlayer()
+    {
         rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
 
-        if (Input.GetButtonDown("Jump") && IsOnGround())
+        if (isPressedJump && IsOnGround())
         {
             jumpSoundEffect.Play();
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
 
         }
-
     }
 
     private void UpdateAnimation()
