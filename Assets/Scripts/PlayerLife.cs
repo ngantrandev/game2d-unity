@@ -27,6 +27,20 @@ public class PlayerLife : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("FinishLevel"))
+        {
+            ShowDisappearAnimation();
+        }
+    }
+
+    private void ShowDisappearAnimation()
+    {
+        rb.bodyType = RigidbodyType2D.Static;
+        animation.SetTrigger("disappear");
+    }
+
     private void ShowDeathAnimation()
     {
         rb.bodyType = RigidbodyType2D.Static;
