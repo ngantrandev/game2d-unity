@@ -9,10 +9,12 @@ public class FinishLevel : MonoBehaviour
 
     private AudioSource finishSoundEffect;
     private bool isCompletedLevel = false;
+    [SerializeField] private int scoreRequired;
 
     // Start is called before the first frame update
     private void Start()
     {
+        scoreRequired = FindCherries();
         finishSoundEffect = GetComponent<AudioSource>();
     }
 
@@ -30,5 +32,12 @@ public class FinishLevel : MonoBehaviour
     private void CompleteLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    private int FindCherries()
+    {
+        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Cherry");
+
+        return gameObjects.Length;
     }
 }

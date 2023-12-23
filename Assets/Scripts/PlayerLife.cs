@@ -7,14 +7,14 @@ using UnityEngine.SceneManagement;
 public class PlayerLife : MonoBehaviour
 {
     [SerializeField] private AudioSource deadthSoundEffect;
-    private Animator animation;
+    private Animator animator;
     private Rigidbody2D rb;
 
 
     // Start is called before the first frame update
     private void Start()
     {
-        animation = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -38,13 +38,13 @@ public class PlayerLife : MonoBehaviour
     private void ShowDisappearAnimation()
     {
         rb.bodyType = RigidbodyType2D.Static;
-        animation.SetTrigger("disappear");
+        animator.SetTrigger("disappear");
     }
 
     private void ShowDeathAnimation()
     {
         rb.bodyType = RigidbodyType2D.Static;
-        animation.SetTrigger("death");
+        animator.SetTrigger("death");
     }
 
     private void RestartLevel()

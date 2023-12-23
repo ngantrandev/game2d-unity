@@ -16,7 +16,12 @@ public class ItemCollector : MonoBehaviour
             collectItemSoundEffect.Play();
             Destroy(collision.gameObject);
             cherries++;
-            cherriesText.text = "Cherris: " + cherries;
+            cherriesText.text = "Cherries: " + cherries;
         }
+    }
+
+    public int GetCherries()
+    {
+        return cherries;
     }
 }

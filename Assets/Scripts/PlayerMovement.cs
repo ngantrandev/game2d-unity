@@ -1,7 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -11,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     private float dirX = 0f;
     private bool isPressedJump;
+    public Button jump, left, right;
 
     [SerializeField] private LayerMask jumpableLayer;
     [SerializeField] private float jumpForce = 14f; // Giup bien private co the hien thi tren Unity Editor giong bien public nhung dam bao encapsulation
@@ -26,6 +25,8 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
+
+
     }
 
     // Update is called once per frame
@@ -36,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        DetectActivity();
+        DetectActivity(); // bat su kien nhan nut tren mobile
 
         MovePlayer();
 
@@ -95,5 +96,30 @@ public class PlayerMovement : MonoBehaviour
     private bool IsOnGround()
     {
         return Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0f, Vector2.down, .1f, jumpableLayer);
+    }
+
+    public void MoveLeft()
+    {
+        dirX = -1f;
+    }
+
+    public void MoveRight()
+    {
+        dirX = 1f;
+    }
+
+    public void Stop()
+    {
+        dirX = 0f;
+    }
+
+    public void Jump()
+    {
+        isPressedJump = true;
+    }
+
+    public void NotJump()
+    {
+        isPressedJump = false;
     }
 }
