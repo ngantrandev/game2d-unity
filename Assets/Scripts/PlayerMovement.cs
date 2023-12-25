@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        DetectActivity(); // bat su kien nhan nut tren mobile
+        DetectActivity(); // bat su kien nhan nut tren thiet bi co ban phim
 
         MovePlayer();
 

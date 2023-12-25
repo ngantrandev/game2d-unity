@@ -8,6 +8,7 @@ public class ItemCollector : MonoBehaviour
     [SerializeField] private AudioSource collectItemSoundEffect;
     private int cherries = 0;
     [SerializeField] private Text cherriesText;
+    [SerializeField] private Text levelName;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

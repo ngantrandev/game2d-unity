@@ -9,6 +9,10 @@ public class PlayerLife : MonoBehaviour
     [SerializeField] private AudioSource deadthSoundEffect;
     private Animator animator;
     private Rigidbody2D rb;
+    private SpriteRenderer spriteRenderer;
+    private Transform transform;
+
+    Vector2 lastPos;
 
 
     // Start is called before the first frame update
@@ -16,6 +20,10 @@ public class PlayerLife : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        transform = GetComponent<Transform>();
+
+        lastPos = transform.position;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -47,8 +55,14 @@ public class PlayerLife : MonoBehaviour
         animator.SetTrigger("death");
     }
 
+    private void Respawn()
+    {
+
+    }
+
     private void RestartLevel()
     {
-       SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        transform.position = lastPos;
     }
 }
