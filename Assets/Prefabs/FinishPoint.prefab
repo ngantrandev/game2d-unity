@@ -12,10 +12,9 @@ GameObject:
   - component: {fileID: 7915571790743914810}
   - component: {fileID: 8601417483156921518}
   - component: {fileID: 5983556754962637672}
-  - component: {fileID: 2146260487845962225}
   m_Layer: 0
   m_Name: FinishPoint
-  m_TagString: Untagged
+  m_TagString: FinishLevel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -228,15 +227,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2146260487845962225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7144802516224719648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bc8b97f24412324290b33124c72eb6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

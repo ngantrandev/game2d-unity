@@ -7,24 +7,31 @@ using UnityEngine.SceneManagement;
 public class FinishLevel : MonoBehaviour
 {
 
-    private AudioSource finishSoundEffect;
+    [SerializeField] private AudioSource finishSoundEffect;
     private bool isCompletedLevel = false;
-    [SerializeField] private int scoreRequired;
+    public int scoreRequired;
+    [SerializeField] ItemCollector itemCollector;
+    [SerializeField] PlayerLife playerLife;
 
     // Start is called before the first frame update
     private void Start()
     {
         scoreRequired = FindCherries();
-        finishSoundEffect = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "Player" && !isCompletedLevel)
+        if (collision.gameObject.CompareTag("FinishLevel") && !isCompletedLevel)
         {
-            finishSoundEffect.Play();
-            isCompletedLevel = true;
-            Invoke("CompleteLevel", 1f);
+            Debug.Log(itemCollector.GetScore());
+            if(itemCollector.GetScore() == scoreRequired)
+            {
+                finishSoundEffect.Play();
+                playerLife.ShowDisappearAnimation();
+
+                isCompletedLevel = true;
+                Invoke("CompleteLevel", 1f);
+            }
         }
 
     }

@@ -74,11 +74,13 @@ public class PlayerLife : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("On trigger");
-        if (collision.gameObject.CompareTag("FinishLevel"))
-        {
-            ShowDisappearAnimation();
-        }
-        else if (collision.gameObject.CompareTag("Checkpoint"))
+        //if (collision.gameObject.CompareTag("FinishLevel"))
+        //{
+        //    ShowDisappearAnimation();
+        //}
+        //else
+        
+        if (collision.gameObject.CompareTag("Checkpoint"))
         {
             checkpointSound.Play();
             collision.gameObject.SetActive(false);
@@ -86,7 +88,7 @@ public class PlayerLife : MonoBehaviour
         }
     }
 
-    private void ShowDisappearAnimation()
+    public void ShowDisappearAnimation()
     {
         rb.bodyType = RigidbodyType2D.Static;
         animator.SetTrigger("disappear");

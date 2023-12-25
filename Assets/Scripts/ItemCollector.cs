@@ -21,7 +21,7 @@ public class ItemCollector : MonoBehaviour
         }
     }
 
-    public int GetCherries()
+    public int GetScore()
     {
         return cherries;
     }
